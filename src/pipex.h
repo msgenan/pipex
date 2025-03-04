@@ -14,6 +14,8 @@ typedef struct s_pipe
 	char **cmd1;
 	char **cmd2;
 	char **path;
+	char *command1;
+	char *command2;
 	char	*str;
 	int	fdpipe[2];
 
@@ -25,5 +27,6 @@ void	ft_take_arg(t_pipe *x, char **av);
 void    ft_error(t_pipe *x, char *str);
 void	ft_clean_string(char **str);
 void	ft_cleaner(t_pipe *x);
+void	ft_initialise(t_pipe *x);
 
 #endif

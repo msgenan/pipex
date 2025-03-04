@@ -12,7 +12,7 @@ void	ft_child_process(t_pipe *x, char *av, char **env)
 	close(x->fdpipe[1]);
 	dup2(fd, 0);
 	close(fd);
-	if (execve(x->cmd1[0], x->cmd1, env) == -1)
+	if (execve(x->command1, x->cmd1, env) == -1)
 		ft_error(x, "problem with execve on child");
 }
 
@@ -28,7 +28,7 @@ void	ft_parent_process(t_pipe *x, char *av, char **env)
 	close(x->fdpipe[0]);
 	dup2(fd, 1);
 	close(fd);
-	if(execve(x->cmd2[0], x->cmd2, env) == -1)
+	if(execve(x->command2, x->cmd2, env) == -1)
 		ft_error(x, "problem with execve on parent");
 }
 
@@ -42,15 +42,16 @@ int main(int ac, char **av, char **env)
 	x = malloc(sizeof(t_pipe));
 	if (!x)
 		ft_error(x, "t_pipe allocation failed!");
+	ft_initialise(x);
 	ft_take_arg(x, av);
 	ft_take_path(x, env);
 	if (!x->path)
 		ft_error(x, "Valid path not found!");
-	x->cmd1[0] = ft_search_path(x, x->cmd1[0]);
-	if (!x->cmd1[0])
+	x->command1 = ft_search_path(x, x->cmd1[0]);
+	if (!x->command1)
 		ft_error(x, "Valid path for cmd1 not found!");
-	x->cmd2[0] = ft_search_path(x, x->cmd2[0]);
-	if (!x->cmd2[0])
+	x->command2 = ft_search_path(x, x->cmd2[0]);
+	if (!x->command2)
 		ft_error(x, "Valid path for cmd2 not found!");
 	if (pipe(x->fdpipe) == -1)
 		ft_error(x, "Pipe creation failed!");
