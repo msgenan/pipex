@@ -38,7 +38,7 @@ int main(int ac, char **av, char **env)
 	int pid;
 
 	if(ac != 5)
-		ft_error(x, "Argument count is not 5!");
+		return(perror("Argument count is not 5!"), exit(0), 0);
 	x = malloc(sizeof(t_pipe));
 	if (!x)
 		ft_error(x, "t_pipe allocation failed!");

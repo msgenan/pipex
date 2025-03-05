@@ -8,6 +8,9 @@ void    ft_error(t_pipe *x, char *str)
 
 void	ft_cleaner(t_pipe *x)
 {
+	int flag;
+
+	flag = 0;
 	if (x->cmd1)
 		ft_clean_string(x->cmd1);
 	if (x->cmd2)
@@ -17,8 +20,11 @@ void	ft_cleaner(t_pipe *x)
 	if (x->command1)
 		free(x->command1);
 	if (x->command2)
+	{
 		free(x->command2);
-	if (x->str)
+		flag = 1;
+	}
+	if (x->str && flag != 1)
 		free(x->str);
 	free(x);
 	exit(0);

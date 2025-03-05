@@ -58,8 +58,7 @@ char	*ft_search_path(t_pipe *x, char *cmd)
 		ft_strlcat(x->str, cmd, size + 2);
 		if (access(x->str, X_OK) == 0)
 			return(x->str);
-		free(x->str);
 		i++;
 	}
-	return(NULL);
+	return(x->str);
 }
