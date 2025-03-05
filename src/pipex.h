@@ -6,7 +6,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
-# include <errno.h>
 # include "./libft/libft.h"
 
 typedef struct s_pipe
@@ -22,7 +21,7 @@ typedef struct s_pipe
 }			t_pipe;
 
 char	*ft_search_path(t_pipe *x, char *cmd);
-char	**ft_take_path(t_pipe *x, char **env);
+void	ft_take_path(t_pipe *x, char **env);
 void	ft_take_arg(t_pipe *x, char **av);
 void    ft_error(t_pipe *x, char *str);
 void	ft_clean_string(char **str);

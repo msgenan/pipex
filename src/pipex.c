@@ -45,8 +45,6 @@ int main(int ac, char **av, char **env)
 	ft_initialise(x);
 	ft_take_arg(x, av);
 	ft_take_path(x, env);
-	if (!x->path)
-		ft_error(x, "Valid path not found!");
 	x->command1 = ft_search_path(x, x->cmd1[0]);
 	if (!x->command1)
 		ft_error(x, "Valid path for cmd1 not found!");

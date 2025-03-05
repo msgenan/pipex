@@ -10,7 +10,7 @@ void	ft_take_arg(t_pipe *x, char **av)
         ft_error(x, "Problem with cmd1 argument!");
 }
 
-char	**ft_take_path(t_pipe *x, char **env)
+void	ft_take_path(t_pipe *x, char **env)
 {
 	int i;
 	int j;
@@ -19,7 +19,6 @@ char	**ft_take_path(t_pipe *x, char **env)
 	
 	i = 0;
     str = "PATH=";
-	x->path = NULL;
 	while(env[i])
 	{
 		j = 0;
@@ -36,7 +35,8 @@ char	**ft_take_path(t_pipe *x, char **env)
 		}
 		i++;
 	}
-	return(x->path);
+	if (!x->path)
+		ft_error(x, "Valid path not found!");
 }
 
 char	*ft_search_path(t_pipe *x, char *cmd)
