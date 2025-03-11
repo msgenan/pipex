@@ -20,12 +20,7 @@ void	ft_cleaner(t_pipe *x)
 	if (x->command1)
 		free(x->command1);
 	if (x->command2)
-	{
 		free(x->command2);
-		flag = 1;
-	}
-	if (x->str && flag != 1)
-		free(x->str);
 	free(x);
 	exit(0);
 }

@@ -3,6 +3,7 @@
 void	ft_take_arg(t_pipe *x, char **av)
 {
 	x->cmd1 = ft_split(av[2], ' ');
+
     if (!x->cmd1 || !x->cmd1[0])
         ft_error(x, "Problem with cmd1 argument!");
 	x->cmd2 = ft_split(av[3], ' ');
@@ -35,6 +36,7 @@ void	ft_take_path(t_pipe *x, char **env)
 		}
 		i++;
 	}
+	
 	if (!x->path)
 		ft_error(x, "Valid path not found!");
 }
@@ -59,6 +61,7 @@ char	*ft_search_path(t_pipe *x, char *cmd)
 		if (access(x->str, X_OK) == 0)
 			return(x->str);
 		i++;
+		free(x->str);
 	}
-	return(x->str);
+	return(NULL);
 }
