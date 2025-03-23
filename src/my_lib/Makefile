@@ -1,6 +1,6 @@
 NAME = my_lib.a
 SRCS = ft_strlen.c \
-ft_sttlcat.c \
+ft_strlcat.c \
 ft_strlcpy.c \
 ft_split.c \
 ft_strdup.c \
@@ -20,7 +20,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-
 
 re: fclean all
 
