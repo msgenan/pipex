@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 20:53:48 by mugenan           #+#    #+#             */
+/*   Updated: 2025/03/23 21:16:53 by mugenan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	ft_child_process(t_pipe *x, char *av, char **env)
@@ -18,7 +30,7 @@ void	ft_child_process(t_pipe *x, char *av, char **env)
 
 void	ft_parent_process(t_pipe *x, char *av, char **env)
 {
-	int fd;
+	int	fd;
 
 	fd = open(av, O_CREAT | O_TRUNC | O_RDWR | O_APPEND, 0777);
 	if (fd == -1)
@@ -28,17 +40,17 @@ void	ft_parent_process(t_pipe *x, char *av, char **env)
 	close(x->fdpipe[0]);
 	dup2(fd, 1);
 	close(fd);
-	if(execve(x->command2, x->cmd2, env) == -1)
+	if (execve(x->command2, x->cmd2, env) == -1)
 		ft_error(x, "problem with execve on parent");
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-	t_pipe *x;
-	int pid;
+	t_pipe	*x;
+	int		pid;
 
-	if(ac != 5)
-		return(perror("Argument count is not 5!"), exit(0), 0);
+	if (ac != 5)
+		return (perror("Argument count is not 5!"), exit(0), 0);
 	x = malloc(sizeof(t_pipe));
 	if (!x)
 		ft_error(x, "t_pipe allocation failed!");

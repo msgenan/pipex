@@ -1,16 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 20:54:15 by mugenan           #+#    #+#             */
+/*   Updated: 2025/03/23 21:19:25 by mugenan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-void    ft_error(t_pipe *x, char *str)
+void	ft_error(t_pipe *x, char *str)
 {
-    perror(str);
-	ft_cleaner(x); 
+	perror(str);
+	ft_cleaner(x);
 }
 
 void	ft_cleaner(t_pipe *x)
 {
-	int flag;
-
-	flag = 0;
 	if (x->cmd1)
 		ft_clean_string(x->cmd1);
 	if (x->cmd2)
@@ -27,10 +36,10 @@ void	ft_cleaner(t_pipe *x)
 
 void	ft_clean_string(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		free(str[i++]);
 	free(str);
 }
